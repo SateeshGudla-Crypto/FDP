@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* FlowPilot Dark Theme Tokens */
+    --bg: #111318;
+    --surface: #1A1D24;
+    --surface-hover: #22262E;
+    --text-primary: #F2F2F2;
+    --text-secondary: #8E929B;
+    --text-muted: #5C6068;
+    --accent: #FF7A33;
+    --accent-hover: #E56A26;
+    --accent-glow: rgba(255, 122, 51, 0.15);
+    --border-color: #2A2E36;
+    --border-focus: #FF7A33;
+    --success: #4ADE80;
+    --light-bg: #F5F5F0;
+    --light-text: #111318;
+    --light-surface: #FFFFFF;
+    --light-border: #E5E5E0;
+
+    --background: 222 14% 7%;
+    --foreground: 0 0% 95%;
+    --card: 220 13% 12%;
+    --card-foreground: 0 0% 95%;
+    --popover: 220 13% 12%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 20 100% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 10% 15%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 220 10% 15%;
+    --muted-foreground: 220 5% 57%;
+    --accent: 20 100% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 10% 19%;
+    --input: 220 10% 19%;
+    --ring: 20 100% 60%;
+    --radius: 0.5rem;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text-primary);
+    font-family: 'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  /* Focus visible for accessibility */
+  *:focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
+  }
+
+  /* Selection color */
+  ::selection {
+    background-color: var(--accent-glow);
+    color: var(--text-primary);
+  }
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .font-sans {
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+}
+
+/* Scroll indicator bounce animation */
+@keyframes bounce-down {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+.animate-bounce-down {
+  animation: bounce-down 2s ease-in-out infinite;
+}
+
+/* Workflow traveling dot animation */
+@keyframes dash-flow {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-dash-flow {
+  stroke-dasharray: 8 12;
+  animation: dash-flow 1.5s linear infinite;
+}
+
+/* Number counter animation helper */
+@keyframes count-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Nav link underline */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent);
+  transition: width 150ms ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
